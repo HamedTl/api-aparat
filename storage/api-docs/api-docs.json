@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Videos API",
+        "description": "This is videos api",
+        "contact": {
+            "email": "admin@mail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/channels/{channel:slug}/videos": {
+            "get": {
+                "tags": [
+                    "Videos"
+                ],
+                "summary": "Get a list of videos for a specific channel",
+                "description": "Returns a list of videos associated with a given channel SLUG",
+                "operationId": "d57d5ee26274bc6c62252f30f426d5c7",
+                "parameters": [
+                    {
+                        "name": "channel",
+                        "in": "path",
+                        "description": "The SLUG of the channel",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "code-learning"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of videos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "videos"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/VideoResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Channel not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "VideoResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "tag": {
+                        "type": "string",
+                        "example": "1735760898_laravel_part_94_8213544"
+                    },
+                    "publisher": {
+                        "type": "string",
+                        "example": "Code Learning"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Sample Video"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "example": "https://example.com/videos/thumbnails/1735760898_Network.jpg"
+                    },
+                    "source": {
+                        "type": "string",
+                        "example": "https://example.com/videos/videos/1735760898_laravel_part_94.mp4"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-01-10T12:34:56Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-01-10T12:34:56Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Videos",
+            "description": "Videos"
+        }
+    ]
+}
